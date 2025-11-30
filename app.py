@@ -11,7 +11,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 BACKEND_MODEL_NAME = "gemini-2.5-flash"
 
 # 2. Retrieve API Key from Secrets or Environment Variables
-API_KEY = "AIzaSyCa-nFtq37AtNbPtlnzVTk-rrDkxfzStUY"
+API_KEY = os.getenv("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
 
 # ========== STREAMLIT PAGE CONFIG ==========
 st.set_page_config(page_title="HR Assistant", page_icon="💼")

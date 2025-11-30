@@ -1,0 +1,11 @@
+/.streamlit/secrets.toml
+/venv
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints
+test_gemini.py
+api.py
+chat_logs.csv
+hr_policies.txt
