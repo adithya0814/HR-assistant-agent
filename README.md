@@ -1,76 +1,50 @@
-# 🤖 HR Assistant Agent
+# HR Assistant
 
-## 1. Overview
+## Project Overview
+This project is an AI-powered HR Assistant designed to answer employee questions based on a company's internal HR policies. It uses a Large Language Model (LLM) from Google (Gemini) to understand and respond to queries in a conversational manner. The assistant is built with Python and uses Streamlit for the user interface, making it easy to create an interactive web-based application.
 
-The **HR Assistant Agent** is an AI-powered chat application that helps employees get instant answers to common HR-related questions such as:
+The core of the application is a predefined set of HR policies and guidelines that act as the primary source of truth for the AI. This ensures that the assistant provides accurate and consistent information to employees.
 
-- Leave policy  
-- Working hours  
-- Holidays  
-- Probation and confirmation  
-- Notice period  
-- Basic benefits  
 
-Instead of emailing HR and waiting for a response, employees can ask their questions in a simple chat interface and get an answer based on the company’s HR policy document.
 
----
+## Steps to Run the Code
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd hr-assistant-agent
+   ```
+2. **Install the dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Set up your environment variables:**
+   - Create a `.env` file in the root directory.
+   - Add your Gemini API key to the `.env` file:
+     ```
+     GEMINI_API_KEY="your-api-key"
+     ```
+4. **Run the application:**
+   ```bash
+   streamlit run app.py
+   ```
 
-## 2. Features
+## Environment Setup
+- **Python:** This project requires Python 3.8 or higher.
+- **Virtual Environment:** It is recommended to use a virtual environment to manage project dependencies.
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+  ```
+- **Dependencies:** The required Python libraries are listed in the `requirements.txt` file.
 
-- 💬 **Interactive chat UI** built using Streamlit  
-- 📄 Uses a fixed HR policy file: `hr_policies.txt`  
-- 🤖 Uses an OpenAI GPT model to generate professional answers  
-- 🚫 If a question is outside the policy, the bot politely asks the employee to contact HR  
-- 🧾 Logs all Q&A interactions to `chat_logs.csv` for future analysis  
+## Libraries Used
+- **streamlit:** For creating the web application and user interface.
+- **langchain-google-genai:** For interacting with the Google Gemini LLM.
+- **langchain-core:** Provides the core abstractions for building language model applications.
+- **langchain-community:** For community-contributed components, including the chat message history.
+- **python-dotenv:** For managing environment variables.
 
----
+## Sample Data Explanation
+This project does not require any specific sample data to run. The HR policies and rules are hardcoded in the `app.py` file within the `SYSTEM_CONTEXT` variable. This context provides the AI with the necessary information to answer employee questions.
 
-## 3. Architecture
-
-High-level architecture:
-
-1. **User (Employee)**  
-   - Opens the Streamlit web app in a browser  
-   - Types a question related to HR policies  
-
-2. **Streamlit App (`app.py`)**  
-   - Receives the question  
-   - Loads `hr_policies.txt`  
-   - Constructs a system prompt and conversation history  
-
-3. **OpenAI GPT Model**  
-   - Takes the system prompt + chat history + latest question  
-   - Generates a professional answer based only on the given policies  
-
-4. **Streamlit App**  
-   - Displays the answer back to the user  
-   - Saves the question and answer into `chat_logs.csv` with timestamp  
-
-5. **Storage**  
-   - `hr_policies.txt` → HR policy knowledge base  
-   - `chat_logs.csv` → Simple analytics / log store  
-
-You can draw this as a block diagram for `architecture.png` with arrows:
-**User → Streamlit UI → OpenAI GPT → Streamlit UI → User**, and a side box for **CSV Logs**.
-
----
-
-## 4. Tech Stack
-
-- **Language:** Python  
-- **Frontend / UI:** Streamlit  
-- **LLM Provider:** OpenAI GPT model (e.g., `gpt-4.1-mini`)  
-- **Config / Secrets:** `.env` using `python-dotenv`  
-- **Logging / Storage:** CSV file using `pandas`  
-
----
-
-## 5. Project Structure
-
-```text
-hr-assistant-agent/
-├─ app.py               # Main Streamlit application
-├─ hr_policies.txt      # HR policy document used as knowledge base
-├─ requirements.txt     # Python dependencies
-├─ README.md            # Project documentation
-└─ .env.example         # Example environment variable file (API key)
+If you wish to extend the project, you can place relevant data files (e.g., CSVs with employee information, additional policy documents) in the `data` directory. You would then need to modify the application to read and process this data.
