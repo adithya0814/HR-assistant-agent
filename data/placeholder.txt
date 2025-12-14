@@ -1,0 +1,2 @@
+This directory is intended for storing data files.
+You can add your sample data here. For example, a CSV file with employee data or any other relevant data for the HR assistant.
